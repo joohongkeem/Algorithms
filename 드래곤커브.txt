@@ -1,0 +1,100 @@
+#include <stdio.h>
+#define ARR_SIZE 2602 // 나중에 10201로 변경
+
+
+struct POINT{
+	char x;
+	char y;
+};
+typedef struct POINT PT;
+
+int count = 0;
+PT endpoint;
+PT startpoint;
+PT dragonpoint[ARR_SIZE];
+char startindex;
+char endindex;
+
+void dragon(int x, int y, int d)
+{
+	for(i=startindex; i<=endindex-1;i++)
+	{
+		if(d==1)
+	}
+
+
+}
+void init(int x, int y, int *d)
+{
+	startpoint.x=x;
+	startpoint.y=y;
+	startindex=count;
+	dragonpoint[count++]=startpoint;
+	if(*d==0)
+	{
+		endpoint.x = x+1;
+		endpoint.y = y;
+		*d == 1;
+	}
+	if(*d==1)
+	{
+		endpoint.x=x;
+		endpoint.y=y-1;
+		*d == 2;
+	}
+	if(*d==2)
+	{
+		endpoint.x = x-1;
+		endpoint.y=y;
+		*d == 3;
+	}
+	if(*d==3)
+	{
+		endpoint.x = x;
+		endpoint.y = y+1;
+		*d == 0;
+	}
+	endindex=count;
+	dragonpoint[count++]=endpoint;
+	return;
+
+}
+int main(void)
+{
+
+		
+	int i,j;
+	int N=1;
+	int x,y,d,g;
+	int board[51][51]={0}; // 나중에 101, 101로 변경
+
+	for(i=1;i<=N;i++)
+	{
+		scanf("%d %d %d %d",&x,&y,&d,&g);
+
+		init(x,y,&d);
+		while(g>=1)
+		{
+			
+			d= (d+1)%4;
+			g--;
+		}
+	}
+
+
+	for(i=0;i<count;i++)
+	{
+		board[dragonpoint[i].x][dragonpoint[i].y]=1;
+	}
+	for(i=0;i<51;i++)
+	{
+		for(j=0;j<51;j++)
+		{
+			printf("%d ",board[i][j]);
+		}
+		puts("");
+	}
+
+
+	return 0;
+}

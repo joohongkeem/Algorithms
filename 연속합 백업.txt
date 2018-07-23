@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int arr[100001];
+int increasing[100001]={0}; 
+int decreasing[100001]={0};
+int main()
+{
+
+	int n,i,end,sum=0,sum1=0,max;
+
+// 1번째부터 i번째까지의 최대합
+ // i번째부터 n번째까지의 최대합
+	scanf("%d",&n);
+
+	for(i=1;i<=n;i++)
+		scanf("%d",&arr[i]);
+
+
+	for(i=1;i<=n;i++)
+	{
+		sum+=arr[i];
+		if(sum<0) {sum = 0; end=i+1;}
+		increasing[i]=sum;
+	}
+
+	for(i=1;i<=n;i++)
+	{
+		printf("inc[%d]=%d\n",i,increasing[i]);
+	}
+	printf("%d\n\n",end);
+
+	max = arr[n];
+	sum = 0;
+	for(i=n;i>=1;i--)
+	{
+		sum+=arr[i];
+		if(sum<0) {sum = 0; end=i+1;}
+		decreasing[i]=sum;
+	}
+	for(i=1;i<=n;i++)
+	{
+		printf("dec[%d]=%d\n",i,decreasing[i]);
+	}
+	printf("%d\n\n",end);
+	return 0;
+}

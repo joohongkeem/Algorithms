@@ -1,0 +1,58 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define SWAP(x,y)  x=x^y;y=x^y;x=x^y;
+ 
+ 
+struct bit {
+    char b1 : 1;
+    char b2 : 1;
+    char b3 : 1;
+    char b4 : 1;
+    char b5 : 1;
+    char b6 : 1;
+    char b7 : 1;
+    char b8 : 1;
+};
+union byte{
+    struct bit B;
+    char VALUE;
+};
+typedef union byte Byte;
+ 
+ 
+ 
+int main()
+{
+    int n;
+    Byte BT;
+     
+    scanf("%x",&n);
+    BT.VALUE=n;
+ 
+    SWAP(BT.B.b1,BT.B.b8)
+    SWAP(BT.B.b2,BT.B.b7)
+    SWAP(BT.B.b3,BT.B.b6)
+    SWAP(BT.B.b4,BT.B.b5)
+ 
+    printf("%X",(BT.VALUE&255));
+ 
+ 
+ 
+ 
+    return 0;
+}
+
+//int main(){
+//    int a=0,n,sum=0;
+//    char b=0;
+//    scanf("%x",&a);
+//    for(n=0;n<8;n++){
+//    b=(a>>n)&1;
+//    sum+=b<<(7-n);
+//    }
+//    printf("%X",sum);
+//}
+//
+//
+//
+// 이렇게하면 끝이다...

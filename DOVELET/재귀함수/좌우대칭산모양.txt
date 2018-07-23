@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+void pTp(int n)
+{
+	if(n==2){printf("121"); return;}
+	else{
+		pTp(n-1);
+		printf("%d",n);
+		pTp(n-1);
+	}
+}
+
+main()
+{
+	int n;
+	scanf("%d",&n);
+	pTp(n);
+}

@@ -1,0 +1,22 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+int main(void)
+{
+	int N,K,t,i,j,d[10001]={1};
+	scanf("%d%d",&N,&K);
+
+	while(N--)
+	{
+		scanf("%d",&t);
+
+	
+		for(j=0;j<=K-t;j++)
+
+		
+			d[j+t]+=d[j];
+	}
+
+	printf("%d",d[K]);
+}

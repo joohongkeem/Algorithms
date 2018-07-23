@@ -1,0 +1,12 @@
+int main(void)
+{
+	int n,k,a[10],i=0;
+	for(scanf("%d%d",&n,&k);i<n;scanf("%d",a+i++));
+	n=0;
+	i--;
+	while(k)
+	{
+		k/a[i]?(n+=k/a[i])&(k%=a[i]):i--;
+	}
+	printf("%d",n);
+}

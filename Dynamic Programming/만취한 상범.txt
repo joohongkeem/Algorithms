@@ -1,0 +1,27 @@
+#include <stdio.h>
+int answer(int a)
+{
+    int i=1;
+    int count =0;
+    for(i=1;i<=a;i++)
+    {
+        if(i*i<=a) count ++;
+        else if(i*i>a) break;
+    }
+    return count;
+    
+}
+int main()
+{
+    int n;
+    int i;
+    int arr[101];
+    scanf("%d",&n);
+    for(i=1 ; i<=n; i++)
+    {
+        scanf("%d",&arr[i]);
+        printf("%d\n",answer(arr[i]));
+    }
+
+    return 0;
+}

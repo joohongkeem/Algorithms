@@ -1,0 +1,26 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+int main(void)
+{
+	int dp[3];
+	int n,i;
+
+	scanf("%d",&n);
+	
+	dp[0]=1;
+	dp[1]=2;
+
+	for(i=0;i<n-2;i++)
+	{
+		dp[2] = (dp[1]+dp[0])%10007;
+
+		dp[0] = dp[1];
+		dp[1] = dp[2];
+	}
+
+	if(n==1 || n==2) printf("%d",n);
+	else printf("%d",dp[2]);
+	return 0;
+}

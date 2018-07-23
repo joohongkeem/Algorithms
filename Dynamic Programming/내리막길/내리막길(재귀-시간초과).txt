@@ -1,0 +1,59 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int arr[502][502];
+
+int count=0;
+int n,m;
+
+void findingroad(int (*p)[502],int i, int j)
+{
+
+	if(i==n && j==m) {count ++; return;}
+	if(i<1 || i>n || j< 1 || j>m) return;
+
+
+	if(p[i][j] <= p[i][j+1]);
+	else {findingroad(p,i,j+1); }
+
+	if(p[i][j] <= p[i+1][j]);
+	else {findingroad(p,i+1,j); }
+
+	if(p[i][j] <= p[i][j-1]);
+	else {findingroad(p,i,j-1); }
+
+	if(p[i][j] <= p[i-1][j]);
+	else {findingroad(p,i-1,j); }
+
+	return;
+
+}
+
+
+int main(void)
+{
+	int i,j;
+	
+
+	scanf("%d %d",&n,&m);
+
+	for(i=0;i<=n+1;i++)
+	{
+		for(j=0;j<=m+1;j++)
+		{
+			arr[i][j]=999999;
+		}
+	}	
+
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=m;j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+	findingroad(arr,1,1);
+	printf("%d",count);
+
+	return 0;
+}

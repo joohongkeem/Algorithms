@@ -1,0 +1,25 @@
+int arr[31];
+int n, k;
+ 
+void bitpattern(int current_i, int use_one){
+	int i;
+    if (use_one == k){
+        for (i= 1; i <= n; i++){
+            
+			printf("%d",arr[i]);
+        }
+        puts("");
+        return;
+    }
+    if (current_i == n + 1) return;
+    arr[current_i] = 1;
+    bitpattern(current_i + 1, use_one + 1);
+    arr[current_i] = 0;
+    bitpattern(current_i + 1, use_one);
+}
+ 
+int main(){
+    scanf("%d %d",&n,&k);
+    bitpattern(1, 0);
+    return 0;
+}

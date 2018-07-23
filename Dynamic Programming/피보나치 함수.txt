@@ -1,0 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+struct fiboNUM{
+	int value;
+	int zeroNum;
+	int oneNum;
+};
+typedef struct fiboNUM FNUM;
+
+int main(void)
+{
+	FNUM dp[41];
+	int n, i;
+	int value;
+
+	scanf("%d",&n);
+	
+	dp[0].zeroNum=1;
+	dp[0].oneNum=0;
+	dp[1].zeroNum=0;
+	dp[1].oneNum=1;
+	for(i=2;i<=40;i++)
+	{
+		dp[i].zeroNum=dp[i-1].zeroNum+dp[i-2].zeroNum;
+		dp[i].oneNum=dp[i-1].oneNum + dp[i-2].oneNum;
+	}
+	
+	for(i=0;i<n;i++)
+	{
+	scanf("%d",&value);
+	printf("%d %d\n",dp[value].zeroNum,dp[value].oneNum);
+	}
+
+	return 0;
+}

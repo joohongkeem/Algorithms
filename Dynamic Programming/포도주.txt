@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+
+int max(int a, int b)
+{
+	if(a>=b) return a;
+	else return b;
+}
+void ans(int sValue,int *c1,int *c2, int *c0)
+{
+	int t1,t2,t0;
+
+	t1=*c1,t2=*c2,t0=*c0;
+
+	*c1=t0+sValue;
+	*c2=t1+sValue;
+	*c0=max(max(t1,t2),t0);
+}
+
+
+int main()
+{
+	int n;
+	int stairs[10001];
+	int i;
+	int count0=0, count1=0,count2=0;
+	int max;
+
+	scanf("%d",&n);
+
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d",&stairs[i]);
+	}
+
+	for(i=n;i>=1;i--)
+	{
+		ans(stairs[i],&count1,&count2,&count0);
+		
+	}
+
+	max = count2;
+	if(count1>max) max=count1;
+	if(count0>max) max=count0;
+
+	printf("%d",max);
+	
+	return 0;
+}

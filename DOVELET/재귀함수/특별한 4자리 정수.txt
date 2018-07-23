@@ -1,0 +1,58 @@
+#include <stdio.h>
+ 
+ 
+int sum10(int n)
+{
+    int a,b,c,d;
+    a = n / 1000;
+    n = n - a*1000;
+    b = n / 100;
+    n = n - b*100;
+    c = n / 10;
+    d = n - c*10;
+    return a+b+c+d;
+}
+ 
+int sum16 (int n)
+{
+    int a, b, c, d;
+ 
+    a = n / (16*16*16);
+    n = n - a * (16*16*16);
+    b = n / (16*16);
+    n = n - b * 16 * 16;
+    c = n / 16;
+    d = n - c * 16;
+ 
+    return a+b+c+d;
+ 
+ 
+}
+int sum12 (int n)
+{
+    int a, b, c, d;
+ 
+    a = n / (12*12*12);
+    n = n - a * (12*12*12);
+    b = n / (12*12);
+    n = n - b * 12 * 12;
+    c = n / 12;
+    d = n - c * 12;
+ 
+    return a+b+c+d;
+ 
+ 
+}
+ 
+int main()
+{
+ 
+    int a,i;
+    for(i=1000; i<10000; i++){
+ 
+         a = sum10(i);
+        if(a==sum12(i) && a == sum16(i)) printf("%d\n",i); 
+ 
+    }
+    return 0;
+}

@@ -1,0 +1,18 @@
+#include <stdio.h>
+ 
+ 
+int chd(int n)
+{
+    if(n==1) return 1;
+    else
+        return (n%2)+chd(n/2)*10;
+}
+ 
+int main()
+{
+    int a;
+    scanf("%d",&a);
+    printf("%d",chd(a));
+     
+    return 0;
+}

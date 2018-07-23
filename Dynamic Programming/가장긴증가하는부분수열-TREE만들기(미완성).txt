@@ -1,0 +1,263 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#pragma warning(disable:4996)
+
+#include <stdio.h>
+
+ 
+
+struct tree {
+
+	int data;
+
+	int depth;
+
+	struct tree *parent, *left, *right;
+
+};
+
+typedef struct tree TREE;
+
+TREE *head,*tail;
+
+ 
+
+void Treeinit(void)
+
+{
+	TREE *root;
+	root = (TREE*)malloc(sizeof(TREE));
+
+	root->data = 0;
+
+	root->depth = 0;
+
+	root->parent = head;
+
+	head = root;
+
+	root->left = NULL;
+
+	root->right = NULL;
+
+ 
+
+}
+
+ 
+
+void Swaping(TREE* Pnode) // 자식의 left right노드를 맞바꾼다.
+
+{
+
+	TREE *temp;	                // temp
+
+	temp = Pnode->left;			// left Pnode  right
+
+	Pnode->left = Pnode->right; // 
+
+	Pnode->right = temp;
+
+}
+
+void Deleting(TREE* Pnode)  // 아직 제대로못만듬
+
+{
+
+	if(Pnode->left==NULL && Pnode->right==NULL)
+
+	{
+
+		if(Pnode->parent->left == Pnode)Pnode->parent->left = NULL;
+
+		if (Pnode->parent->right == Pnode)Pnode->parent->right = NULL;
+
+		free(Pnode);
+
+		return;
+
+	}
+
+	if(Pnode->left!=NULL)Deleting(Pnode->left);
+
+	if(Pnode->right!=NULL)Deleting(Pnode->right);
+
+}
+
+void Linsert(TREE* Pnode, int value)
+
+{
+
+	TREE *Lnode;
+
+	Lnode = (TREE*)malloc(sizeof(TREE));
+
+	Pnode->left = Lnode;
+
+	Lnode->parent = Pnode;
+
+	Lnode->data = value;
+
+	Lnode->depth = (Pnode->depth) + 1;
+
+	Lnode->left = NULL;
+
+	Lnode->right = NULL;
+
+}
+
+void Rinsert(TREE* Pnode, int value)
+
+{
+
+	TREE *Rnode;
+
+	Rnode = (TREE*)malloc(sizeof(TREE));
+
+	Pnode->right = Rnode;
+
+	Rnode->parent = Pnode;
+
+	Rnode->data = value;
+
+	Rnode->depth = (Pnode->depth) + 1;
+
+	Rnode->left = NULL;
+
+	Rnode->right = NULL;
+
+}
+
+void showTree(void)
+
+{
+
+	TREE *root;
+
+	root = head;
+
+
+
+//	printf("                  %d              %d                   \n", root->left->data,root->right->data);
+
+//	printf("                  %d              %d                   \n", root->left->depth,root->right->depth);
+	//printf("                  %d                              \n", root->left->data);
+	//puts("");
+
+
+
+	//printf("           %d                              \n", root->left->left->data);
+	//puts("");
+	//
+
+}
+
+void Treeinsert(int value)
+
+{
+
+	TREE *node;
+
+	TREE *root;
+
+	node = head;
+
+	if (node->left == NULL && node->right == NULL)
+
+	{
+
+		Linsert(node, value);
+
+		return;
+
+	}
+
+	node = node->left;
+	if(value==node->data) return;
+
+	else{
+		if(value > node->data)
+		{
+			if(node->left == NULL) 
+			{
+				Linsert(node,value);	
+			}
+			else if(node->right ==NULL) 
+			{
+				Rinsert(node,value);
+				if(node->left->data >= node->right->data /*여기다 depth비교하는 과정넣기*/)
+				{
+				Swaping(node);
+				}
+
+			}
+			else
+			{
+				// 노드가 둘다 가득차있다면
+				// depth가 깊은걸 왼쪽에두고
+				// 왼쪽노드에 함수 호출
+				// 오른쪽노드에 함수 호출
+			}
+		}
+	}
+
+
+ 
+
+	
+
+	/*newnode = head->left;
+
+	if (value == newnode->data) return;
+
+	else if (value >=  )*/
+
+ 
+
+}
+
+ 
+
+ 
+
+ 
+
+int main()
+
+{
+
+	int N;
+
+	int num;
+
+	int i;
+
+ 
+
+ 
+
+	Treeinit();
+
+ 
+
+	scanf("%d", &N);
+
+	for (i = 1; i <= N; i++)
+
+	{
+
+		scanf("%d", &num);
+
+		Treeinsert(num);
+
+	}
+
+ 
+
+	showTree();
+
+	Deleting(head);
+
+	return 0;
+
+}

@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+int sqrt(int a,int n)
+{
+	if(n==0) return 1;
+	if(n==1) return a;
+	else return a*sqrt(a,n-1);
+}
+void making_Binnum(int a, char *p) // arr[0]이 2의0승, arr[31]이 2의 31승
+{
+	int i;
+	for(i=0;i<31;i++)
+	{
+		if(a==1) {p[i]=1; return;}
+		p[i]=a%2;
+		a = (a/2);
+		
+	}
+}
+int making_Decnum(char *p) // arr[0]이 2의0승, arr[31]이 2의 31승
+{
+	int i,sum=0;
+	for(i=0;i<31;i++)
+	{
+		sum += p[i]*sqrt(2,i);
+	}
+	return sum;
+}
+int main()
+{
+	int n1,n2;
+	int i;	
+	char a[32]={0},b[32]={0}, ans[32]={0};
+			
+
+	scanf("%d %d",&n1,&n2);
+	
+	making_Binnum(n1,a);
+	making_Binnum(n2,b);
+	//for(i=31;i>=0;i--) printf("%d",a[i]);  // 거꾸로 출력해야 보기좋게 나온다.
+	//puts("");
+	//for(i=31;i>=0;i--) printf("%d",b[i]);
+	//puts("");
+
+	for(i=0;i<32;i++) ans[i]=a[i]^b[i];
+	//for(i=31;i>=0;i--) printf("%d",ans[i]);  // 마찬가지로 배열의 역순으로 들어간다.
+
+	printf("%d",making_Decnum(ans));
+	return 0;
+}

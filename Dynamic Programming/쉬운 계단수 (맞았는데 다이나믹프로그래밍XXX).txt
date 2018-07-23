@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+
+int main(void)
+{
+	int n,i,j;
+	unsigned long dp[2][10]={0,1,1,1,1,1,1,1,1,1};
+	unsigned long sum=9;
+
+	scanf("%d",&n);
+	
+	for(i=1; i<=n-1; i++)
+	{
+		sum = 0;
+		dp[1][0] = (dp[0][1])%1000000000;
+		sum+=(dp[1][0]);
+		for(j=1;j<=8;j++)
+		{
+			dp[1][j] = (dp[0][j-1] + dp[0][j+1])%1000000000;
+			sum+=(dp[1][j]);
+		}
+		dp[1][9] = (dp[0][8])%1000000000;
+		sum+=(dp[1][9]);
+		
+		for(j=0;j<=9;j++) dp[0][j] = dp[1][j]%1000000000;
+	}
+
+	printf("%d",sum%1000000000);
+
+	return 0;
+}

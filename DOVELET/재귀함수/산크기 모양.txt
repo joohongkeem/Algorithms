@@ -1,0 +1,36 @@
+#include <stdio.h>
+ 
+ 
+void mountain_up(int start,int end)
+{
+    if(start==end) { return;}
+    printf("%d",start);
+    mountain_up(start+1,end);
+ 
+}
+void mountain_down(int start, int end)
+{
+    if(start==end) {printf("%d",start); return;}
+    printf("%d",start);
+    mountain_down(start-1,end);
+ 
+}
+ 
+int main()
+{
+    int a;
+    int i;
+    scanf("%d",&a);
+     
+    mountain_up(1,a);
+    mountain_down(a,1);
+    /*for(i=1;i<=a;i++)
+    {
+        printf("%d",i);
+    }
+    for(i=a-1;i>=1;i--)
+    {
+        printf("%d",i);
+    }*/
+    return 0;
+}

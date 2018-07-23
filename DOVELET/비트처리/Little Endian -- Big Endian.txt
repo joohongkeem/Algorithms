@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+struct bitNum{
+	unsigned char a:8;
+	unsigned char b:8;
+	unsigned char c:8;
+	unsigned char d:8;
+};
+typedef struct bitNum BIT;
+
+
+
+
+int main()
+{
+	int little,i;
+	int big;
+	BIT Num;
+
+	while(scanf("%d",&little) !=EOF){
+	if(little==-1) break;
+	Num.a = little & 0xFF;
+	Num.b = (little>>8) & 0xFF;
+	Num.c = (little>>16) & 0xFF;
+	Num.d = (little>>24) & 0xFF;
+	big = (Num.a<<24)+(Num.b<<16)+(Num.c<<8)+(Num.d);
+	printf("%d converts to %d\n", little,big);
+	}
+
+
+	
+
+
+
+	return 0;
+}

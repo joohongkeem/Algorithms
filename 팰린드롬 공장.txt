@@ -1,0 +1,96 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+#define DEBUG
+
+int len;
+int PLDR(char *p)   // 펠린드롬이면 -1반환/ 아니면 0 반환
+{
+	int i=0;
+	while(i<(len-1)-i)
+	{
+		if(p[i]!=p[(len-1)-i]) return 0;
+		i++;
+	}
+
+	return 1;
+}	
+int inserting(char *p, int pos, char V, int count) // 0<=pos<=len-1
+{
+	int i;
+
+	for(i=len;i>=pos;i--) // len위치에 널있다.
+	{
+		p[i+1]=p[i];
+	}
+	p[pos]=V;
+	len++;
+
+	return ++count;
+}
+int deleting(char *p, int pos, int count) // 0<=pos<=len-1
+{
+	int i;
+
+	for(i=pos;i<=len;i++) // len위치에 널있다.
+	{
+		p[i]=p[i+1];
+	}
+	len--;
+	return ++count;
+}
+
+int substitute(char *p,int pos ,char V, int count)
+{
+	p[pos] = V;
+
+	return ++count;
+}
+
+int swapping(char *p, int idx1, int idx2, int count)
+{
+	char buffer;
+
+	buffer = p[idx1];
+	p[idx1]=p[idx2];
+	p[idx2]=buffer;
+
+	return ++count;
+}
+int main()
+{
+	char a[51]="babacvabba";
+	char buffer[51]={0};
+	int count = 0;
+	int i,j,k,bf_len;
+	int start;
+	
+	len = strlen(a); // 10글자이므로 10들어감
+	
+	if(len%2==0) start = len/2 - 1;
+	else start = len/2;
+
+	k=0;
+
+	for(i=0;i<=start;i++) //5번 반복
+	{
+		// buffer에 중앙부터 2개씩확대하면서 
+		k=0;
+
+		for(j=0;j<len-(start-i)*2;j++)
+		{	
+			buffer[j]=a[start-i+k];
+			k++;
+		}	
+		buffer[k]='\0';
+#ifdef DEBUG
+		puts(buffer);
+#endif
+
+	}
+	
+
+
+	return 0;
+}
